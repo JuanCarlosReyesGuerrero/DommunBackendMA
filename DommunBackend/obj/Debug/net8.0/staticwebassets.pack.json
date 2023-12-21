@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Desarrollos\\prueba minimal apis\\DommunBackend\\DommunBackend\\wwwroot\\actores\\8af6cf20-3041-4373-ab8d-7870aa36ebf6.jpg",
+      "PackagePath": "staticwebassets\\actores\\8af6cf20-3041-4373-ab8d-7870aa36ebf6.jpg"
+    },
+    {
+      "Id": "D:\\Desarrollos\\prueba minimal apis\\DommunBackend\\DommunBackend\\wwwroot\\actores\\a599d0f0-b179-47e0-8f51-60482122d341.jpg",
+      "PackagePath": "staticwebassets\\actores\\a599d0f0-b179-47e0-8f51-60482122d341.jpg"
+    },
+    {
+      "Id": "D:\\Desarrollos\\prueba minimal apis\\DommunBackend\\DommunBackend\\wwwroot\\peliculas\\7d58b997-8f53-442b-94c1-4db9695a4dd1.jpg",
+      "PackagePath": "staticwebassets\\peliculas\\7d58b997-8f53-442b-94c1-4db9695a4dd1.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.DommunBackend.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.DommunBackend.props",
+      "PackagePath": "build\\DommunBackend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.DommunBackend.props",
+      "PackagePath": "buildMultiTargeting\\DommunBackend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.DommunBackend.props",
+      "PackagePath": "buildTransitive\\DommunBackend.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

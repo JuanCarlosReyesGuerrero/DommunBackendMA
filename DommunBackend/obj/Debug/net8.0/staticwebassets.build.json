@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "jRgdSj4E8WkbquD8Y9jGZa9fc44LLHRQQ6POe2wJ9CQ=",
+  "Source": "DommunBackend",
+  "BasePath": "_content/DommunBackend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "DommunBackend\\wwwroot",
+      "Source": "DommunBackend",
+      "ContentRoot": "D:\\Desarrollos\\prueba minimal apis\\DommunBackend\\DommunBackend\\wwwroot\\",
+      "BasePath": "_content/DommunBackend",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Desarrollos\\prueba minimal apis\\DommunBackend\\DommunBackend\\wwwroot\\actores\\8af6cf20-3041-4373-ab8d-7870aa36ebf6.jpg",
+      "SourceId": "DommunBackend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Desarrollos\\prueba minimal apis\\DommunBackend\\DommunBackend\\wwwroot\\",
+      "BasePath": "_content/DommunBackend",
+      "RelativePath": "actores/8af6cf20-3041-4373-ab8d-7870aa36ebf6.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\actores\\8af6cf20-3041-4373-ab8d-7870aa36ebf6.jpg"
+    },
+    {
+      "Identity": "D:\\Desarrollos\\prueba minimal apis\\DommunBackend\\DommunBackend\\wwwroot\\actores\\a599d0f0-b179-47e0-8f51-60482122d341.jpg",
+      "SourceId": "DommunBackend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Desarrollos\\prueba minimal apis\\DommunBackend\\DommunBackend\\wwwroot\\",
+      "BasePath": "_content/DommunBackend",
+      "RelativePath": "actores/a599d0f0-b179-47e0-8f51-60482122d341.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\actores\\a599d0f0-b179-47e0-8f51-60482122d341.jpg"
+    },
+    {
+      "Identity": "D:\\Desarrollos\\prueba minimal apis\\DommunBackend\\DommunBackend\\wwwroot\\peliculas\\7d58b997-8f53-442b-94c1-4db9695a4dd1.jpg",
+      "SourceId": "DommunBackend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Desarrollos\\prueba minimal apis\\DommunBackend\\DommunBackend\\wwwroot\\",
+      "BasePath": "_content/DommunBackend",
+      "RelativePath": "peliculas/7d58b997-8f53-442b-94c1-4db9695a4dd1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\peliculas\\7d58b997-8f53-442b-94c1-4db9695a4dd1.jpg"
+    }
+  ]
+}
