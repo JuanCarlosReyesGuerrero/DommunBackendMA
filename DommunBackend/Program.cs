@@ -8,6 +8,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,7 +52,25 @@ builder.Services.AddCors(opciones =>
 builder.Services.AddOutputCache();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Dommun API",
+        Description = "Esta es una web api para la plataforma inmobiliaria Dommun",
+        Contact = new OpenApiContact
+        {
+            Email = "quinde@gmail.com",
+            Name = "Juan Reyes",
+            Url = new Uri("http://quinde.co")
+        },
+        License = new OpenApiLicense
+        {
+            Name = "Privada",
+            Url = new Uri("pagina licencia")
+        }
+    });
+});
 
 builder.Services.AddAutoMapper(typeof(Program));
 

@@ -14,6 +14,7 @@ bin-release/
 *.apk
 *.exe
 *.dll
+*.suo
 
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
@@ -28,3 +29,7 @@ bin-release/
 .vs/ProjectEvaluation/dommunbackend.metadata.v2
 .vs/ProjectEvaluation/dommunbackend.projects.v2
 .vs/
+*.exe
+*.dll
+*.cache
+*.pdb

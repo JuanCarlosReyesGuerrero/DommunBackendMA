@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DommunBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fc831db69d0ca86a3021fa340c847967f22b8eef")]
 [assembly: System.Reflection.AssemblyProductAttribute("DommunBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DommunBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

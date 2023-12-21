@@ -4,10 +4,11 @@ using DommunBackend.DomainLayer.Models;
 using DommunBackend.Filtros;
 using DommunBackend.RepositoryLayer.IRepository;
 using DommunBackend.ServiceLayer.IService;
-using FluentValidation;
+using DommunBackend.Utilidades;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OutputCaching;
+using Microsoft.OpenApi.Models;
 
 namespace DommunBackend.EndPoints
 {
@@ -17,7 +18,10 @@ namespace DommunBackend.EndPoints
 
         public static RouteGroupBuilder MapActores(this RouteGroupBuilder group)
         {
-            group.MapGet("/", ObtenerActores).CacheOutput(c => c.Expire(TimeSpan.FromSeconds(60)).Tag("actores-get"));
+            group.MapGet("/", ObtenerActores)
+                .CacheOutput(c => c.Expire(TimeSpan.FromSeconds(60)).Tag("actores-get"))
+                .AgregarParametrosPaginacionOpenAPI();
+
             group.MapGet("/{id:int}", ObtenerActorPorId);
             group.MapPost("/", CrearActor).DisableAntiforgery()
                 .AddEndpointFilter<FiltroValidaciones<CrearActorDto>>()

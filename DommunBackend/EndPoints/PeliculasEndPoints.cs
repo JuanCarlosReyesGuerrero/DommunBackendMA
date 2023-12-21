@@ -4,6 +4,7 @@ using DommunBackend.DomainLayer.Models;
 using DommunBackend.Filtros;
 using DommunBackend.RepositoryLayer.IRepository;
 using DommunBackend.ServiceLayer.IService;
+using DommunBackend.Utilidades;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OutputCaching;
@@ -16,26 +17,32 @@ namespace DommunBackend.EndPoints
 
         public static RouteGroupBuilder MapPeliculas(this RouteGroupBuilder group)
         {
-            group.MapGet("/", ObtenerPeliculas).CacheOutput(c => c.Expire(TimeSpan.FromSeconds(60)).Tag("peliculas-get"));
+            group.MapGet("/", ObtenerPeliculas)
+                .CacheOutput(c => c.Expire(TimeSpan.FromSeconds(60)).Tag("peliculas-get"))
+                .AgregarParametrosPaginacionOpenAPI();
+
             group.MapGet("/{id:int}", ObtenerPeliculaPorId);
+
             group.MapPost("/", CrearPelicula).DisableAntiforgery()
-                .AddEndpointFilter<FiltroValidaciones<CrearPeliculaDto>>()
-                .RequireAuthorization("esAdmin");
+                .AddEndpointFilter<FiltroValidaciones<CrearPeliculaDto>>().RequireAuthorization("esAdmin");
+
             group.MapPut("/{id:int}", ActualizarPelicula).DisableAntiforgery()
-                .AddEndpointFilter<FiltroValidaciones<CrearPeliculaDto>>()
-                .RequireAuthorization("esAdmin");
+                .AddEndpointFilter<FiltroValidaciones<CrearPeliculaDto>>().RequireAuthorization("esAdmin");
+
             group.MapDelete("/{id:int}", BorrarPelicula).RequireAuthorization("esAdmin");
+
             group.MapGet("obtenerPorNombre/{nombre}", ObtenerPorNombre);
+
             group.MapPost("/{id:int}/asignargeneros", AsignarGeneros);
+
             group.MapPost("/{id:int}/asignaractores", AsignarActores);
 
             return group;
         }
 
         static async Task<Ok<List<PeliculaDto>>> ObtenerPeliculas(IRepositorioPeliculas repositorio,
-            IMapper mapper, int pagina = 1, int recorsPorpagina = 10)
+            IMapper mapper, PaginacionDto paginacion)
         {
-            var paginacion = new PaginacionDto { Pagina = pagina, RegistrosPorPagina = recorsPorpagina };
             var peliculas = await repositorio.ObtenerTodos(paginacion);
             var peliculasDto = mapper.Map<List<PeliculaDto>>(peliculas);
 

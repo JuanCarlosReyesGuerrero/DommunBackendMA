@@ -291,3 +291,4 @@ D:\Desarrollos\prueba minimal apis\DommunBackendMA\DommunBackend\obj\Debug\net8.
 D:\Desarrollos\prueba minimal apis\DommunBackendMA\DommunBackend\obj\Debug\net8.0\DommunBackend.pdb
 D:\Desarrollos\prueba minimal apis\DommunBackendMA\DommunBackend\obj\Debug\net8.0\DommunBackend.genruntimeconfig.cache
 D:\Desarrollos\prueba minimal apis\DommunBackendMA\DommunBackend\obj\Debug\net8.0\ref\DommunBackend.dll
+D:\Desarrollos\prueba minimal apis\DommunBackendMA\DommunBackend\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
