@@ -60,15 +60,20 @@ builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 builder.Services.AddProblemDetails();
 
 builder.Services.AddAuthentication()
-    .AddJwtBearer(opciones => opciones.TokenValidationParameters = new TokenValidationParameters
+    .AddJwtBearer(opciones =>
     {
-        ValidateIssuer = false,
-        ValidateAudience = false,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = LlavesAutenticacion.ObtenerLlave(builder.Configuration).First(),
-        //IssuerSigningKeys = LlavesAutenticacion.ObtenerTodasLasLlaves(builder.Configuration)
-        ClockSkew = TimeSpan.Zero
+        opciones.MapInboundClaims = false;
+
+        opciones.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = LlavesAutenticacion.ObtenerLlave(builder.Configuration).First(),
+            //IssuerSigningKeys = LlavesAutenticacion.ObtenerTodasLasLlaves(builder.Configuration)
+            ClockSkew = TimeSpan.Zero
+        };
     });
 builder.Services.AddAuthorization();
 

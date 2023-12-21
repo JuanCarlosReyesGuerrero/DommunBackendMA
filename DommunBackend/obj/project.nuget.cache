@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XdjJIVyO3V3kZs3hgjO9ahyecg2GVTNaJ6U9BGaG2lBnYCvWpvINUUKt7fI19/4P8ySjS5K2qbfwPFFlvnIdwQ==",
+  "dgSpecHash": "0qPJxgEcdqNu8uVZOqtRViyqoA466E2W5nCKSrdeDjE8INIcSjxsjlVks9HJpcvjMxglT4jcd9rL6vih+Gf9eQ==",
   "success": true,
-  "projectFilePath": "D:\\Desarrollos\\prueba minimal apis\\DommunBackend\\DommunBackend\\DommunBackend.csproj",
+  "projectFilePath": "D:\\Desarrollos\\prueba minimal apis\\DommunBackendMA\\DommunBackend\\DommunBackend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\quind\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\quind\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

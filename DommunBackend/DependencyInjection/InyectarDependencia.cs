@@ -26,7 +26,8 @@ namespace DommunBackend.DependencyInjection
 
             services.AddScoped(typeof(IAlmacenadorArchivos), typeof(AlmacenadorArchivosAzure));
             services.AddScoped(typeof(IAlmacenadorArchivos), typeof(AlmacenadorArchivosLocal));
-            
+            services.AddTransient(typeof(IServicioUsuarios), typeof(ServicioUsuarios));
+
             services.AddHttpContextAccessor();
 
             //services.AddScoped(typeof(IBackOfficeService), typeof(BackOfficeService));            

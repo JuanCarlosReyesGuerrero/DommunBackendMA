@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Desarrollos\\prueba minimal apis\\DommunBackend\\DommunBackend\\DommunBackend.csproj": {}
+    "D:\\Desarrollos\\prueba minimal apis\\DommunBackendMA\\DommunBackend\\DommunBackend.csproj": {}
   },
   "projects": {
-    "D:\\Desarrollos\\prueba minimal apis\\DommunBackend\\DommunBackend\\DommunBackend.csproj": {
+    "D:\\Desarrollos\\prueba minimal apis\\DommunBackendMA\\DommunBackend\\DommunBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Desarrollos\\prueba minimal apis\\DommunBackend\\DommunBackend\\DommunBackend.csproj",
+        "projectUniqueName": "D:\\Desarrollos\\prueba minimal apis\\DommunBackendMA\\DommunBackend\\DommunBackend.csproj",
         "projectName": "DommunBackend",
-        "projectPath": "D:\\Desarrollos\\prueba minimal apis\\DommunBackend\\DommunBackend\\DommunBackend.csproj",
+        "projectPath": "D:\\Desarrollos\\prueba minimal apis\\DommunBackendMA\\DommunBackend\\DommunBackend.csproj",
         "packagesPath": "C:\\Users\\quind\\.nuget\\packages\\",
-        "outputPath": "D:\\Desarrollos\\prueba minimal apis\\DommunBackend\\DommunBackend\\obj\\",
+        "outputPath": "D:\\Desarrollos\\prueba minimal apis\\DommunBackendMA\\DommunBackend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
