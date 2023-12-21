@@ -21,7 +21,7 @@ namespace DommunBackend.EndPoints
             group.MapGet("/{id:int}", ObtenerActorPorId);
             group.MapPost("/", CrearActor).DisableAntiforgery()
                 .AddEndpointFilter<FiltroValidaciones<CrearActorDto>>()
-                .RequireAuthorization("esAdmin"); 
+                .RequireAuthorization("esAdmin");
             group.MapPut("/{id:int}", ActualizarActor).DisableAntiforgery()
                 .AddEndpointFilter<FiltroValidaciones<CrearActorDto>>()
                 .RequireAuthorization("esAdmin");
@@ -32,9 +32,9 @@ namespace DommunBackend.EndPoints
         }
 
         static async Task<Ok<List<ActorDto>>> ObtenerActores(IRepositorioActores repositorio,
-            IMapper mapper, int pagina = 1, int recorsPorpagina = 10)
+            IMapper mapper, PaginacionDto paginacion)
         {
-            var paginacion = new PaginacionDto { Pagina = pagina, RegistrosPorPagina = recorsPorpagina };
+            //var paginacion = new PaginacionDto { Pagina = pagina, RegistrosPorPagina = recorsPorpagina };
             var actores = await repositorio.ObtenerTodos(paginacion);
             var actoresDto = mapper.Map<List<ActorDto>>(actores);
 
@@ -56,7 +56,7 @@ namespace DommunBackend.EndPoints
         }
 
         static async Task<Results<Created<ActorDto>, ValidationProblem>> CrearActor([FromForm] CrearActorDto crearActorDto,
-            IRepositorioActores repositorio, IOutputCacheStore outputCacheStore, IMapper mapper, IAlmacenadorArchivos almacenadorArchivos            )
+            IRepositorioActores repositorio, IOutputCacheStore outputCacheStore, IMapper mapper, IAlmacenadorArchivos almacenadorArchivos)
         {
             var actor = mapper.Map<Actor>(crearActorDto);
 

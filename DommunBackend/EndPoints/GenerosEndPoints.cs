@@ -14,7 +14,7 @@ namespace DommunBackend.EndPoints
         public static RouteGroupBuilder MapGeneros(this RouteGroupBuilder group)
         {
             group.MapGet("/", ObtenerGeneros)
-                .CacheOutput(c => c.Expire(TimeSpan.FromSeconds(60)).Tag("generos-get")).RequireAuthorization();
+                .CacheOutput(c => c.Expire(TimeSpan.FromSeconds(60)).Tag("generos-get"));
             group.MapGet("/{id:int}", ObtenerGeneroPorId);
             group.MapPost("/", CrearGenero).AddEndpointFilter<FiltroValidaciones<CrearGeneroDto>>()
                 .RequireAuthorization("esAdmin");
@@ -25,8 +25,10 @@ namespace DommunBackend.EndPoints
             return group;
         }
 
-        static async Task<Ok<List<GeneroDto>>> ObtenerGeneros(IRepositorioGeneros repositorio, IMapper mapper)
+        static async Task<Ok<List<GeneroDto>>> ObtenerGeneros(IRepositorioGeneros repositorio, IMapper mapper, ILoggerFactory loggerFactory)
         {
+            var tipo = typeof(GenerosEndPoints);
+            var logger = loggerFactory.CreateLogger(tipo.FullName!);            
             var generos = await repositorio.ObtenerTodos();
             var generosDto = mapper.Map<List<GeneroDto>>(generos);
 
