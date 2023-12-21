@@ -75,7 +75,10 @@ builder.Services.AddAuthentication()
             ClockSkew = TimeSpan.Zero
         };
     });
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorization(opciones =>
+    {
+        opciones.AddPolicy("esAdmin", politica => politica.RequireClaim("esAdmin"));
+    });
 
 
 

@@ -1,5 +1,6 @@
 ﻿using DommunBackend.DomainLayer.DTOs;
 using DommunBackend.Filtros;
+using DommunBackend.ServiceLayer.IService;
 using DommunBackend.Utilidades;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
@@ -16,6 +17,13 @@ namespace DommunBackend.EndPoints
         {
             group.MapPost("/registrar", Registrar).AddEndpointFilter<FiltroValidaciones<CredencialesUsuarioDto>>();
             group.MapPost("/login", Login).AddEndpointFilter<FiltroValidaciones<CredencialesUsuarioDto>>();
+            group.MapPost("/haceradmin", HacerAdmin)
+                .AddEndpointFilter<FiltroValidaciones<EditarClaimDto>>()
+                .RequireAuthorization("esAdmin");
+            group.MapPost("/removeradmin", RemoverAdmin)
+                .AddEndpointFilter<FiltroValidaciones<EditarClaimDto>>()
+                .RequireAuthorization("esAdmin");
+            group.MapGet("/renovarToken", RenovarToken).RequireAuthorization();
 
             return group;
         }
@@ -33,7 +41,7 @@ namespace DommunBackend.EndPoints
 
             if (resultado.Succeeded)
             {
-                var credencialesRespuesta = ConstruirToken(credencialesUsuarioDto, configuration);
+                var credencialesRespuesta = await ConstruirToken(credencialesUsuarioDto, configuration, usermanager);
 
                 return TypedResults.Ok(credencialesRespuesta);
             }
@@ -59,7 +67,7 @@ namespace DommunBackend.EndPoints
 
             if (resultado.Succeeded)
             {
-                var respuestaAutenticacion = ConstruirToken(credencialesUsuarioDto, configuration);
+                var respuestaAutenticacion = await ConstruirToken(credencialesUsuarioDto, configuration, userManager);
 
                 return TypedResults.Ok(respuestaAutenticacion);
             }
@@ -69,13 +77,19 @@ namespace DommunBackend.EndPoints
             }
         }
 
-        private static RespuestaAutenticacionDto ConstruirToken(CredencialesUsuarioDto credencialesUsuarioDto, IConfiguration configuration)
+        private async static Task<RespuestaAutenticacionDto> ConstruirToken(CredencialesUsuarioDto credencialesUsuarioDto,
+            IConfiguration configuration, UserManager<IdentityUser> userManager)
         {
             var claims = new List<Claim>
             {
                 new Claim("email",credencialesUsuarioDto.Email),
                 new Claim("lo que yo quiera","cualquier otro valor")
             };
+
+            var usuario = await userManager.FindByNameAsync(credencialesUsuarioDto.Email);
+            var claimDB = await userManager.GetClaimsAsync(usuario!);
+
+            claims.AddRange(claimDB);
 
             var llave = LlavesAutenticacion.ObtenerLlave(configuration);
             var creds = new SigningCredentials(llave.First(), SecurityAlgorithms.HmacSha256);
@@ -92,6 +106,49 @@ namespace DommunBackend.EndPoints
                 Token = token,
                 Expiracion = expiracion
             };
+        }
+
+        static async Task<Results<NoContent, NotFound>> HacerAdmin(EditarClaimDto editarClaimDto,
+            [FromServices] UserManager<IdentityUser> userManager)
+        {
+            var usuario = await userManager.FindByEmailAsync(editarClaimDto.Email);
+
+            if (usuario is null)
+                return TypedResults.NotFound();
+
+            await userManager.AddClaimAsync(usuario, new Claim("esAdmin", "true"));
+
+            return TypedResults.NoContent();
+        }
+
+        static async Task<Results<NoContent, NotFound>> RemoverAdmin(EditarClaimDto editarClaimDto,
+            [FromServices] UserManager<IdentityUser> userManager)
+        {
+            var usuario = await userManager.FindByEmailAsync(editarClaimDto.Email);
+
+            if (usuario is null)
+                return TypedResults.NotFound();
+
+            await userManager.RemoveClaimAsync(usuario, new Claim("esAdmin", "true"));
+
+            return TypedResults.NoContent();
+        }
+
+        public async static Task<Results<Ok<RespuestaAutenticacionDto>, NotFound>> RenovarToken(
+            IServicioUsuarios servicioUsuarios, IConfiguration configuration, [FromServices] UserManager<IdentityUser> userManager)
+        {
+            var usuario = await servicioUsuarios.Obtenerusuario();
+
+            if (usuario is null)
+            {
+                return TypedResults.NotFound();
+            }
+
+            var credencialesUsuarioDto = new CredencialesUsuarioDto { Email = usuario.Email! };
+
+            var respuestaAutenticacionDto = await ConstruirToken(credencialesUsuarioDto, configuration, userManager);
+
+            return TypedResults.Ok(respuestaAutenticacionDto);
         }
     }
 }

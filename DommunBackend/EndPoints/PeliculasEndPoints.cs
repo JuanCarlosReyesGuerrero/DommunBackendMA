@@ -18,9 +18,13 @@ namespace DommunBackend.EndPoints
         {
             group.MapGet("/", ObtenerPeliculas).CacheOutput(c => c.Expire(TimeSpan.FromSeconds(60)).Tag("peliculas-get"));
             group.MapGet("/{id:int}", ObtenerPeliculaPorId);
-            group.MapPost("/", CrearPelicula).DisableAntiforgery().AddEndpointFilter<FiltroValidaciones<CrearPeliculaDto>>();
-            group.MapPut("/{id:int}", ActualizarPelicula).DisableAntiforgery().AddEndpointFilter<FiltroValidaciones<CrearPeliculaDto>>(); ;
-            group.MapDelete("/{id:int}", BorrarPelicula);
+            group.MapPost("/", CrearPelicula).DisableAntiforgery()
+                .AddEndpointFilter<FiltroValidaciones<CrearPeliculaDto>>()
+                .RequireAuthorization("esAdmin");
+            group.MapPut("/{id:int}", ActualizarPelicula).DisableAntiforgery()
+                .AddEndpointFilter<FiltroValidaciones<CrearPeliculaDto>>()
+                .RequireAuthorization("esAdmin");
+            group.MapDelete("/{id:int}", BorrarPelicula).RequireAuthorization("esAdmin");
             group.MapGet("obtenerPorNombre/{nombre}", ObtenerPorNombre);
             group.MapPost("/{id:int}/asignargeneros", AsignarGeneros);
             group.MapPost("/{id:int}/asignaractores", AsignarActores);

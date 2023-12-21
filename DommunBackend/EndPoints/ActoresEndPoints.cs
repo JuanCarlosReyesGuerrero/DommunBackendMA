@@ -19,9 +19,13 @@ namespace DommunBackend.EndPoints
         {
             group.MapGet("/", ObtenerActores).CacheOutput(c => c.Expire(TimeSpan.FromSeconds(60)).Tag("actores-get"));
             group.MapGet("/{id:int}", ObtenerActorPorId);
-            group.MapPost("/", CrearActor).DisableAntiforgery().AddEndpointFilter<FiltroValidaciones<CrearActorDto>>(); ;
-            group.MapPut("/{id:int}", ActualizarActor).DisableAntiforgery().AddEndpointFilter<FiltroValidaciones<CrearActorDto>>(); ;
-            group.MapDelete("/{id:int}", BorrarActor);
+            group.MapPost("/", CrearActor).DisableAntiforgery()
+                .AddEndpointFilter<FiltroValidaciones<CrearActorDto>>()
+                .RequireAuthorization("esAdmin"); 
+            group.MapPut("/{id:int}", ActualizarActor).DisableAntiforgery()
+                .AddEndpointFilter<FiltroValidaciones<CrearActorDto>>()
+                .RequireAuthorization("esAdmin");
+            group.MapDelete("/{id:int}", BorrarActor).RequireAuthorization("esAdmin");
             group.MapGet("obtenerPorNombre/{nombre}", ObtenerPorNombre);
 
             return group;
